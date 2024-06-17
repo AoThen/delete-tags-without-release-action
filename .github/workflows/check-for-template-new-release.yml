@@ -11,9 +11,9 @@ jobs:
     outputs:
       TEMPLATE_LATEST_RELEASE: ${{ steps.latest_release_name.outputs.value }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Get Latest Template Release
-        uses: octokit/request-action@v2.1.7
+        uses: octokit/request-action@v2.x
         id: get_latest_release
         with:
           route: GET /repos/${{ vars.TEMPLATE_REPO }}/releases/latest
@@ -70,7 +70,7 @@ jobs:
       TITLE: "chore: merge ${{ vars.TEMPLATE_REPO }} ${{ needs.check-for-template-new-release.outputs.TEMPLATE_LATEST_RELEASE }} changes"
       TEMPLATE_LATEST_RELEASE: ${{ needs.check-for-template-new-release.outputs.TEMPLATE_LATEST_RELEASE }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
             token: ${{ github.token }}
       - shell: bash
@@ -85,7 +85,7 @@ jobs:
     needs: create_pr
     if: needs.create_pr.result == 'failure' || needs.create_pr.result == 'skipped'
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
       - name: Remove branch
