@@ -1,6 +1,6 @@
 name: "Delete Tags without Release"
 description: "Delete all the Tags of a repository that are not associated to a Release"
-author: "mail@fabriziocacicia.com"
+author: "AoThen"
 
 runs:
   using: "composite"
